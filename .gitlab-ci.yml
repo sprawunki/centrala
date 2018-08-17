@@ -7,11 +7,11 @@ cache:
   - vendor/
 
 before_script:
-# Install git, the php image doesn't have installed
+# Install system deps
 - apt-get update -yqq
-- apt-get install git -yqq
+- apt-get install git zlib1g-dev -yqq
 
-# Install zip
+# Install modules
 - docker-php-ext-install zip
 
 # Install composer
