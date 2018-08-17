@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+    <ruleset name="Custom Standard" namespace="MyProject\CS\Standard">
+
+    <description>A custom coding standard</description>
+
+    <config name="zend_ca_path" value="/path/to/ZendCodeAnalyzer"/>
+
+    <exclude-pattern>vendor/*</exclude-pattern>
+
+    <arg name="colors"/>
+    <arg value="sp"/>
+    <arg name="report" value="summary"/>
+
+    <ini name="memory_limit" value="64M"/>
+
+    <rule ref="PSR12"/>
+    <rule ref="Squiz.Commenting">
+        <exclude name="Squiz.Commenting.ClosingDeclarationComment"/>
+        <exclude name="Squiz.Commenting.LongConditionClosingComment"/>
+        <exclude name="Squiz.Commenting.FileComment.MissingPackageTag"/>
+    </rule>
+    <rule ref="ObjectCalisthenics"/>
+    <rule ref="PHPCompatibility"/>
+    <config name="testVersion" value="7.2-"/>
+</ruleset>

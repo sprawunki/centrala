@@ -1,0 +1,11 @@
+parameters:
+    git_dir: .
+    bin_dir: vendor/bin
+    tasks:
+        phpcsfixer: ~
+        phpcs:
+            standard: phpcs.ruleset.xml
+        phpstan:
+            level: 7
+        phpunit: ~
+        phpspec: ~
