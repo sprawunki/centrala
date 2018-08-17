@@ -11,6 +11,9 @@ before_script:
 - apt-get update -yqq
 - apt-get install git -yqq
 
+# Install zip
+- docker-php-ext-install zip
+
 # Install composer
 - curl -sS https://getcomposer.org/installer | php
 
