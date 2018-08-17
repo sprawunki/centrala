@@ -8,4 +8,4 @@ COPY tests /var/www/html/tests
 COPY composer.json /var/www/html/composer.json
 
 WORKDIR /var/www/html
-RUN php composer.phar install
+RUN php composer.phar install --no-progress --no-dev
