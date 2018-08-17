@@ -11,6 +11,9 @@ before_script:
 - apt-get update -yqq
 - apt-get install git zlib1g-dev -yqq
 
+- pecl install xdebug
+- docker-php-ext-enable xdebug
+
 # Install modules
 - docker-php-ext-install zip
 
@@ -24,3 +27,8 @@ test:php7:
   image: php:7
   script:
   - vendor/bin/phpunit
+  artifacts:
+    reports:
+      junit: dev/reports/phpunit.junit.xml
+    paths:
+      - dev/reports/coverage-phpunit/
