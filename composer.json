@@ -20,7 +20,8 @@
 		"phpstan/phpstan-phpunit": "^0.11",
 		"phpstan/phpstan-strict-rules": "^0.11",
 		"phpspec/phpspec": "^5.0",
-		"roave/security-advisories": "dev-master"
+		"roave/security-advisories": "dev-master",
+		"metasyntactical/composer-plugin-license-check": "^0.4.0"
 	},
 	"scripts": {
 		"test": "phpunit tests"
@@ -33,6 +34,18 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": ["tests/"]
+        }
+    },
+    "extra": {
+        "metasyntactical/composer-plugin-license-check": {
+            "whitelist": [
+                "MIT",
+                "BSD-3-Clause",
+                "GPL-2.0",
+                "GPL-3.0",
+                "LGPL-3.0-or-later"
+            ],
+            "blacklist": []
         }
     }
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "61938a678239d6ff87a612e12087db40",
+    "content-hash": "386c416e999edef958ccde0ee6ec8507",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -1547,6 +1547,44 @@
                 "schema"
             ],
             "time": "2019-09-25T14:49:45+00:00"
+        },
+        {
+            "name": "metasyntactical/composer-plugin-license-check",
+            "version": "v0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/metasyntactical/composer-plugin-license-check.git",
+                "reference": "105c56ff33d0bebd2404b3270091d61ff290142c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/metasyntactical%2Fcomposer-plugin-license-check/repository/archive.zip?sha=105c56ff33d0bebd2404b3270091d61ff290142c",
+                "reference": "105c56ff33d0bebd2404b3270091d61ff290142c",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "php": ">=7.1.0,<=7.3.3"
+            },
+            "require-dev": {
+                "composer/composer": "^1.4",
+                "phpunit/phpunit": "^6.1"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Metasyntactical\\Composer\\LicenseCheck\\LicenseCheckPlugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Metasyntactical\\Composer\\LicenseCheck\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Plugin for Composer to restrict installation of packages to valid licenses via whitelist.",
+            "time": "2019-04-02T15:01:10+00:00"
         },
         {
             "name": "monolog/monolog",
