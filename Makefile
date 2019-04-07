@@ -28,10 +28,10 @@ $(INFECTION): vendor
 test: test-unit test-infection
 
 test-unit: $(PHPUNIT) vendor
-	$(PHPUNIT) --coverage-text
+	$(PHPUNIT) --coverage-text --coverage-xml=dev/reports/coverage-xml --log-junit=dev/reports/phpunit.junit.xml
 
 test-infection: $(INFECTION) vendor build/logs
-	$(INFECTION) --threads=4 --min-covered-msi=50
+	$(INFECTION) --threads=4 --min-covered-msi=50 --coverage=dev/reports
 
 
 .PHONY: analyze cs-fix cs-check phpstan validate messdetector
