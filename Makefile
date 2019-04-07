@@ -2,6 +2,7 @@ PHPUNIT=./vendor/bin/phpunit
 PHPCS=./vendor/bin/phpcs
 PHPCBF=./vendor/bin/phpcbf
 PHPSTAN=./vendor/phpstan/phpstan/bin/phpstan
+INFECTION=./vendor/infection/infection/bin/infection
 
 .PHONY: all
 
@@ -15,6 +16,7 @@ $(PHPUNIT): vendor
 $(PHPCS): vendor
 $(PHPCBF): vendor
 $(PHPSTAN): vendor
+$(INFECTION): vendor
 
 
 .PHONY: test test-unit test-infection
@@ -23,6 +25,9 @@ test: test-unit test-infection
 
 test-unit: $(PHPUNIT) vendor
 	$(PHPUNIT) --coverage-text
+
+test-infection: $(INFECTION) vendor build/logs
+	$(INFECTION) --threads=4 --min-covered-msi=50
 
 
 .PHONY: analyze cs-fix cs-check phpstan validate
