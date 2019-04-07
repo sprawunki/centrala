@@ -1,6 +1,7 @@
 PHPUNIT=./vendor/bin/phpunit
 PHPCS=./vendor/bin/phpcs
 PHPCBF=./vendor/bin/phpcbf
+PHPMD=./vendor/bin/phpmd
 PHPSTAN=./vendor/phpstan/phpstan/bin/phpstan
 INFECTION=./vendor/infection/infection/bin/infection
 
@@ -14,6 +15,7 @@ vendor: composer.json composer.lock
 
 $(PHPUNIT): vendor
 $(PHPCS): vendor
+$(PHPMD): vendor
 $(PHPCBF): vendor
 $(PHPSTAN): vendor
 $(INFECTION): vendor
@@ -30,7 +32,7 @@ test-infection: $(INFECTION) vendor build/logs
 	$(INFECTION) --threads=4 --min-covered-msi=50
 
 
-.PHONY: analyze cs-fix cs-check phpstan validate
+.PHONY: analyze cs-fix cs-check phpstan validate messdetector
 
 analyze: cs-check phpstan validate
 
@@ -39,6 +41,9 @@ cs-fix: $(PHPCBF)
 
 cs-check: $(PHPCS)
 	$(PHPCS) app --standard=phpcs.ruleset.xml
+
+messdetector: $(PHPMD)
+	$(PHPMD) app text phpmd.ruleset.xml
 
 phpstan: $(PHPSTAN)
 	$(PHPSTAN) analyze app --level=3
