@@ -2,7 +2,8 @@ parameters:
     git_dir: .
     bin_dir: vendor/bin
     tasks:
-        phpcsfixer: ~
+        phpcsfixer2:
+            config: .php_cs.dist
         phpcs:
             standard: phpcs.ruleset.xml
         phpstan:
