@@ -21,7 +21,8 @@
 		"phpstan/phpstan-strict-rules": "^0.11",
 		"phpspec/phpspec": "^5.0",
 		"roave/security-advisories": "dev-master",
-		"metasyntactical/composer-plugin-license-check": "^0.4.0"
+		"metasyntactical/composer-plugin-license-check": "^0.4.0",
+        "infection/infection": "^0.12.2"
 	},
 	"scripts": {
 		"test": "phpunit tests"
