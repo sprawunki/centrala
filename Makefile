@@ -1,4 +1,5 @@
 PHPUNIT=./vendor/bin/phpunit
+PHPA=./vendor/bin/phpa
 PHPCS=./vendor/bin/phpcs
 PHPCBF=./vendor/bin/phpcbf
 PHPMD=./vendor/bin/phpmd
@@ -14,6 +15,7 @@ vendor: composer.json composer.lock
 	composer install
 
 $(PHPUNIT): vendor
+$(PHPA): vendor
 $(PHPCS): vendor
 $(PHPMD): vendor
 $(PHPCBF): vendor
@@ -34,7 +36,7 @@ test-infection: $(INFECTION) vendor build/logs
 
 .PHONY: analyze cs-fix cs-check phpstan validate messdetector
 
-analyze: cs-check phpstan validate
+analyze: cs-check messdetector assumptions phpstan validate
 
 cs-fix: $(PHPCBF)
 	$(PHPCBF) app --standard=phpcs.ruleset.xml
@@ -44,6 +46,9 @@ cs-check: $(PHPCS)
 
 messdetector: $(PHPMD)
 	$(PHPMD) app text phpmd.ruleset.xml
+
+assumptions: $(PHPA)
+	$(PHPA) app tests
 
 phpstan: $(PHPSTAN)
 	$(PHPSTAN) analyze app --level=3

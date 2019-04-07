@@ -23,7 +23,8 @@
 		"roave/security-advisories": "dev-master",
 		"metasyntactical/composer-plugin-license-check": "^0.4.0",
         "infection/infection": "^0.12.2",
-        "bmitch/churn-php": "^1.0"
+        "bmitch/churn-php": "^1.0",
+        "rskuipers/php-assumptions": "^0.8.0"
 	},
 	"scripts": {
 		"test": "phpunit tests"
