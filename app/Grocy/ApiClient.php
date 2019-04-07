@@ -21,7 +21,7 @@ class ApiClient
     /**
      * Constructor
      *
-     * @param array $args Constructor arguments.
+     * @param array $args API Client configuration.
      */
     public function __construct(array $args)
     {
@@ -36,7 +36,6 @@ class ApiClient
         $this->httpClient = new Client([
             // Base URI is used with relative requests.
             'base_uri' => $baseUri,
-            // You can set any number of default request options.
             'timeout'    => 5.0,
             'headers' => [
                 'GROCY-API-KEY' => $args['token'],
@@ -47,7 +46,7 @@ class ApiClient
     /**
      * Get shopping list
      *
-     * @return string
+     * @return string Shopping list JSON
      */
     public function getShoppingList()
     {
@@ -63,7 +62,7 @@ class ApiClient
     /**
      * Get products
      *
-     * @return string
+     * @return string Products JSON
      */
     public function getProducts()
     {
@@ -77,9 +76,9 @@ class ApiClient
     }
 
     /**
-     * Get measurement units
+     * Get units
      *
-     * @return string
+     * @return string Units JSON
      */
     public function getUnits()
     {
@@ -93,9 +92,9 @@ class ApiClient
     }
 
     /**
-     * Get stock locations
+     * Get locations
      *
-     * @return string
+     * @return string Locations JSON
      */
     public function getLocations()
     {
@@ -111,7 +110,7 @@ class ApiClient
     /**
      * Get stock
      *
-     * @return string
+     * @return string Stock JSON
      */
     public function getStock()
     {
@@ -127,7 +126,7 @@ class ApiClient
     /**
      * Get recipes
      *
-     * @return string
+     * @return string Recipes JSON
      */
     public function getRecipes()
     {
@@ -141,9 +140,9 @@ class ApiClient
     }
 
     /**
-     * Get recipe ingredient mapping
+     * Get ingredients
      *
-     * @return string
+     * @return string Ingredients JSON
      */
     public function getIngredients()
     {
