@@ -25,7 +25,7 @@ class Products
      * @param array $args Configuraton.
      * @SuppressWarnings(PHPMD.StaticAccess)
      */
-    public function __construct(array $args)
+    public function __construct($args)
     {
         $this->token = $args['grocyToken'];
         // TODO Clean this up once dependency injection is in place.
