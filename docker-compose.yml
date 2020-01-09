@@ -1,21 +1,56 @@
-version: '3'
+version: '3.4'
 
 services:
-  app:
-    build: .
-    volumes:
-      - ./app:/var/www/html/app
-      - ./bootstrap:/var/www/html/bootstrap
-      - ./public:/var/www/html/public
-      - ./tests:/var/www/html/tests
-  web:
-    image: nginx
-    ports:
-      - 9080:80
-    volumes:
-      - ./dev/docker/nginx/conf.d:/etc/nginx/conf.d
-      - ./app:/var/www/html/app
-      - ./bootstrap:/var/www/html/bootstrap
-      - ./public:/var/www/html/public
-    depends_on:
-      - app
+    centrala:
+        image: macieklewkowicz/centrala
+        build: .
+        volumes:
+          - ./app:/var/www/html/app
+          - ./bootstrap:/var/www/html/bootstrap
+          - ./public:/var/www/html/public
+          - ./tests:/var/www/html/tests
+        env_file:
+            - .env
+        environment:
+            - VIRTUAL_HOST=centrala.local
+        networks:
+            - web
+
+    zakupki:
+        image: macieklewkowicz/zakupki:edge
+        env_file:
+            - .env
+        environment:
+            - API_URL
+            - VIRTUAL_HOST=zakupki.local
+        networks:
+            - web
+
+    grocy:
+        image: linuxserver/grocy
+        container_name: grocy
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=Europe/Warsaw
+            - VIRTUAL_HOST=grocy.local
+        volumes:
+            - ./config:/config
+        networks:
+            - web
+
+    ingress:
+        image: jwilder/nginx-proxy
+        volumes:
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+            - ./etc/nginx-proxy/cert:/etc/nginx/certs
+        ports:
+            - 80:80
+            - 443:443
+        networks:
+            - web
+
+volumes:
+    certs:
+networks:
+    web:
