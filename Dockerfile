@@ -1,11 +1,29 @@
-FROM php:fpm-alpine
+FROM php:7.3-apache
 
-RUN wget https://raw.githubusercontent.com/composer/getcomposer.org/1b137f8bf6db3e79a38a5bc45324414a6b1f9df2/web/installer -O - -q | php --
+RUN a2enmod rewrite
 
-COPY app /var/www/html/app
-COPY public /var/www/html/public
-COPY tests /var/www/html/tests
-COPY composer.json /var/www/html/composer.json
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+RUN set -eux; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
+    git \
+    unzip \
+    ; \
+    rm -rf /var/lib/apt/lists/*;
+
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+RUN composer global require hirak/prestissimo
 
 WORKDIR /var/www/html
-RUN php composer.phar install --no-progress --no-dev
+
+COPY composer.json composer.json
+COPY composer.lock composer.lock
+
+RUN composer install --no-progress --no-dev
+
+COPY app app
+COPY bootstrap bootstrap
+COPY public public
