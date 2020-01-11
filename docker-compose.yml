@@ -17,12 +17,12 @@ services:
             - web
 
     zakupki:
-        image: macieklewkowicz/zakupki:edge
+        image: macieklewkowicz/zakupki
         env_file:
             - .env
         environment:
             - API_URL
-            - VIRTUAL_HOST=zakupki.local
+            - VIRTUAL_HOST=zakupki.local,localhost
         networks:
             - web
 
@@ -35,7 +35,7 @@ services:
             - TZ=Europe/Warsaw
             - VIRTUAL_HOST=grocy.local
         volumes:
-            - ./config:/config
+            - ./etc/grocy/config:/config
         networks:
             - web
 
