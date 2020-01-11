@@ -1,7 +1,7 @@
 {
 	"require": {
 		"php": ">=7.2",
-		"webonyx/graphql-php": "^0.12",
+		"webonyx/graphql-php": "^0.13",
 		"guzzlehttp/guzzle": "^6.3",
 		"jshannon63/jsoncollect": "^1.2"
 	},
