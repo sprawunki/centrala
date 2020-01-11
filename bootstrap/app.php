@@ -1,12 +1,17 @@
 <?php
-
-require __DIR__ . '/../vendor/autoload.php';
+/**
+ * Application bootstrap
+ *
+ * phpcs:disable ObjectCalisthenics.CodeAnalysis.OneObjectOperatorPerLine
+ */
 
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Schema;
 use GraphQL\GraphQL;
 use App\Grocy\Products;
+
+require __DIR__ . '/../vendor/autoload.php';
 
 try {
     $unitType = new ObjectType([
@@ -52,7 +57,7 @@ try {
                 }
             ],
             'stockLevel' => [
-                'type' => Type::int(),
+                'type' => Type::float(),
                 'resolve' => function ($rootValue, $args) {
                     $productId = $rootValue->getid();
                     $stock = new Products($root);
@@ -74,7 +79,7 @@ try {
                 }
             ],
             'minStockAmount' => [
-                'type' => Type::int(),
+                'type' => Type::float(),
                 'resolve' => function ($rootValue, $args) {
                     return $rootValue->getmin_stock_amount();
                 }
@@ -138,7 +143,7 @@ try {
                 }
             ],
             'amount' => [
-                'type' => Type::int(),
+                'type' => Type::float(),
                 'resolve' => function ($rootValue, $args) {
                     return $rootValue->getamount() + $rootValue->getamount_autoadded();
                 }
@@ -156,7 +161,7 @@ try {
                 }
             ],
             'amount' => [
-                'type' => Type::int(),
+                'type' => Type::float(),
                 'resolve' => function ($rootValue, $args) {
                     return $rootValue->getamount();
                 }
