@@ -117,7 +117,7 @@ class ApiClient
     {
         if (!array_key_exists('stock', $this->response)) {
             $apiResponse = $this->httpClient
-                ->request('GET', 'stock/get-current-stock');
+                ->request('GET', 'stock');
             $this->response['stock'] = $apiResponse->getBody();
         }
 
