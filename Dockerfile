@@ -25,5 +25,4 @@ COPY composer.lock composer.lock
 RUN composer install --no-progress --no-dev
 
 COPY app app
-COPY bootstrap bootstrap
 COPY public public
