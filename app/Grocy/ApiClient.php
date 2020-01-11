@@ -27,10 +27,10 @@ class ApiClient
     {
         $this->response = [];
 
-        $baseUri = 'https://demo-en.grocy.info/api/';
+        $baseUri = getenv('GROCY_API_URL_ANONYMOUS');
 
         if (isset($args['token']) && $args['token'] !== '') {
-            $baseUri = 'http://zakupki.yhmt.idl.pl/api/';
+            $baseUri = getenv('GROCY_API_URL');
         }
 
         $this->httpClient = new Client([
