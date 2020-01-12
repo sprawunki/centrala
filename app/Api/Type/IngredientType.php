@@ -37,6 +37,14 @@ class IngredientType extends ObjectType
                             return $rootValue->getamount();
                         }
                     ],
+                    'unit' => [
+                        'type' => Types::unit(),
+                        'resolve' => function ($rootValue, $args) {
+                            $unitId = $rootValue->getqu_id();
+                            $units = new Products($root);
+                            return $units->getUnits($args)->firstWhere('id', $unitId);
+                        }
+                    ],
                     'product' => [
                         'type' => Types::product(),
                         'resolve' => function ($rootValue, $args) {
