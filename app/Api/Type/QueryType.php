@@ -28,7 +28,7 @@ class QueryType extends ObjectType
                     'type' => Types::listOf(Types::shoppingListItem()),
                     'resolve' => function ($root) {
                         $products = new Products($root);
-                        return $products->getItems($args);
+                        return $products->getItems();
                     }
                 ],
                 'locations' => [
@@ -36,21 +36,23 @@ class QueryType extends ObjectType
                     'description' => 'Retrns a list of all locations',
                     'resolve' => function ($root) {
                         $products = new Products($root);
-                        return $products->getLocations($args);
+                        return $products->getLocations();
                     }
                 ],
                 'products' => [
                     'type' => Types::listOf(Types::product()),
                     'resolve' => function ($root) {
                         $products = new Products($root);
-                        return $products->getProducts($args);
+                        return $products->getProducts();
                     }
                 ],
                 'recipes' => [
                     'type' => Types::listOf(Types::recipe()),
                     'resolve' => function ($root) {
                         $products = new Products($root);
-                        return $products->getRecipes($args);
+                        return $products->getRecipes()->filter(function ($recipe) {
+                            return $recipe->getid() > 0;
+                        });
                     }
                 ],
             ]
