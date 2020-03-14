@@ -13,9 +13,6 @@ use Jshannon63\JsonCollect\JsonCollect;
  */
 class Products
 {
-    /** @var string */
-    private $token;
-
     /** @var ApiClient */
     private $client;
 
@@ -25,11 +22,13 @@ class Products
      * @param array $args Configuraton.
      * @SuppressWarnings(PHPMD.StaticAccess)
      */
-    public function __construct($args)
+    public function __construct(array $args)
     {
-        $this->token = $args['grocyToken'];
         // TODO Clean this up once dependency injection is in place.
-        $this->client = ApiClientFactory::getInstance(['token' => $this->token]);
+        $this->client = ApiClientFactory::getInstance([
+            'base_url' => $args['grocyBaseUrl'],
+            'token' => $args['grocyToken'],
+        ]);
     }
 
     /**

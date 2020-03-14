@@ -22,7 +22,10 @@ final class ApiClientFactory
     {
         static $inst = null;
         if ($inst === null) {
-            $inst = new ApiClient(['token' => $args['token']]);
+            $inst = new ApiClient([
+                'base_url' => $args['base_url'],
+                'token' => $args['token']
+            ]);
         }
         return $inst;
     }

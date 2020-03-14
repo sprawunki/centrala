@@ -22,20 +22,19 @@ class ApiClient
      * Constructor
      *
      * @param array $args API Client configuration.
+     *
+     * @throws NoBaseUrlException No base_url defined.
      */
     public function __construct(array $args)
     {
         $this->response = [];
 
-        $baseUri = getenv('GROCY_API_URL_ANONYMOUS');
-
-        if (isset($args['token']) && $args['token'] !== '') {
-            $baseUri = getenv('GROCY_API_URL');
+        if (!isset($args['base_url'])) {
+            throw new NoBaseUrlException();
         }
 
         $this->httpClient = new Client([
-            // Base URI is used with relative requests.
-            'base_uri' => $baseUri,
+            'base_uri' => $args['base_url'] . 'api/',
             'timeout'    => 5.0,
             'headers' => [
                 'GROCY-API-KEY' => $args['token'],
