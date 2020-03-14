@@ -35,7 +35,7 @@ services:
             - TZ=Europe/Warsaw
             - VIRTUAL_HOST=grocy.local
         volumes:
-            - ./etc/grocy/config:/config
+            - config:/config
         networks:
             - web
 
@@ -52,5 +52,6 @@ services:
 
 volumes:
     certs:
+    config:
 networks:
     web:

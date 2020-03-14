@@ -8,8 +8,19 @@ use GraphQL\Type\Schema;
 use GraphQL\GraphQL;
 use App\Grocy\Products;
 use App\Api\Types;
+use Laminas\Diactoros\ServerRequestFactory;
+use Laminas\Diactoros\Response\JsonResponse;
+use Laminas\HttpHandlerRunner\Emitter\SapiEmitter;
 
 require __DIR__ . '/../vendor/autoload.php';
+
+$request = Laminas\Diactoros\ServerRequestFactory::fromGlobals(
+    $_SERVER,
+    $_GET,
+    $_POST,
+    $_COOKIE,
+    $_FILES
+);
 
 try {
     $schema = new Schema([
@@ -31,6 +42,7 @@ try {
     ];
 }
 
-header("Access-Control-Allow-Origin: *");
-header('Content-Type: application/json; charset=UTF-8');
-echo json_encode($output);
+$emitter = new SapiEmitter();
+$emitter->emit(
+    new JsonResponse($output)
+);
