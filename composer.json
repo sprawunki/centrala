@@ -3,7 +3,8 @@
 		"php": ">=7.2",
 		"webonyx/graphql-php": "^0.13",
 		"guzzlehttp/guzzle": "^6.3",
-		"jshannon63/jsoncollect": "^1.2"
+		"jshannon63/jsoncollect": "^1.2",
+		"vlucas/phpdotenv": "^4.1"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "^7.2",

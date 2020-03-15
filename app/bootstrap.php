@@ -8,8 +8,12 @@ use GraphQL\Type\Schema;
 use GraphQL\GraphQL;
 use App\Grocy\Products;
 use App\Api\Types;
+use Dotenv\Dotenv;
 
 require __DIR__ . '/../vendor/autoload.php';
+
+$dotenv = Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
 
 try {
     $schema = new Schema([
