@@ -54,7 +54,7 @@ class ProductType extends ObjectType
                             $stockItem = $stock->getStock($args)
                                 ->firstWhere('product_id', $productId);
                             if ($stockItem) {
-                                return $stockItem->getamount();
+                                return $stockItem->getamount_aggregated();
                             }
                             return 0;
                         }

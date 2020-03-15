@@ -33,7 +33,8 @@ class LocationType extends ObjectType
                         'resolve' => function ($rootValue) {
                             $locationId = $rootValue->getid();
                             $products = new Products($root);
-                            return $products->getProducts($args)->where('location_id', $locationId);
+                            return $products->getProducts($args)->where('location_id', $locationId)
+                                ->where('parent_product_id', null);
                         }
                     ],
                 ];
