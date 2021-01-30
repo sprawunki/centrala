@@ -1,11 +1,11 @@
-FROM php:fpm-alpine
+FROM php:7.3-fpm-alpine
 
-RUN wget https://raw.githubusercontent.com/composer/getcomposer.org/1b137f8bf6db3e79a38a5bc45324414a6b1f9df2/web/installer -O - -q | php --
-
-COPY app /var/www/html/app
-COPY public /var/www/html/public
-COPY tests /var/www/html/tests
+COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
 COPY composer.json /var/www/html/composer.json
 
 WORKDIR /var/www/html
-RUN php composer.phar install --no-progress --no-dev
+RUN composer install --no-progress --no-dev
+
+COPY app app
+COPY bootstrap bootstrap
+COPY public public
