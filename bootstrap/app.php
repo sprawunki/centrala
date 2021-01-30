@@ -239,9 +239,20 @@ try {
         'unit' => $unitType,
     ]);
 
-    $rawInput = $_GET['q'];
+    $rawInput = file_get_contents("php://input");
     $input = json_decode($rawInput, true);
     $query = $input['query'];
+
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        if (isset($_GET['q'])) {
+            $rawInput = $_GET['q'];
+            $input = json_decode($rawInput, true);
+            $query = $input['query'];
+        }
+        if (isset($_GET['query'])) {
+            $query = $_GET['query'];
+        }
+    }
     $variableValues = isset($input['variables']) ? $input['variables'] : null;
     $rootValue = ['grocyToken' => $input['tokens']['grocy']];
     $result = GraphQL::executeQuery($schema, $query, $rootValue, null, $variableValues);
