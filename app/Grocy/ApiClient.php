@@ -19,7 +19,7 @@ class ApiClient
         $baseUri = 'https://demo-en.grocy.info/api/';
 
         if (isset($args['token']) && $args['token']) {
-            $baseUri = 'http://zakupki.yhmt.idl.pl/api/';
+            $baseUri = 'https://grocy.lewkowi.cz/api/';
         }
 
         $this->httpClient = new Client([
