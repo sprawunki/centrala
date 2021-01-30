@@ -36,7 +36,7 @@ class ApiClient
     public function getShoppingList()
     {
         if (!array_key_exists('shoppinglist', $this->response)) {
-            $this->response['shoppinglist'] = $this->httpClient->request('GET', 'get-objects/shopping_list')->getBody();
+            $this->response['shoppinglist'] = $this->httpClient->request('GET', 'objects/shopping_list')->getBody();
         }
 
         return (string) $this->response['shoppinglist'];
@@ -45,7 +45,7 @@ class ApiClient
     public function getProducts()
     {
         if (!array_key_exists('products', $this->response)) {
-            $this->response['products'] = $this->httpClient->request('GET', 'get-objects/products')->getBody();
+            $this->response['products'] = $this->httpClient->request('GET', 'objects/products')->getBody();
         }
 
         return (string) $this->response['products'];
@@ -54,7 +54,7 @@ class ApiClient
     public function getUnits()
     {
         if (!array_key_exists('units', $this->response)) {
-            $this->response['units'] = $this->httpClient->request('GET', 'get-objects/quantity_units')->getBody();
+            $this->response['units'] = $this->httpClient->request('GET', 'objects/quantity_units')->getBody();
         }
 
         return (string) $this->response['units'];
@@ -63,7 +63,7 @@ class ApiClient
     public function getLocations()
     {
         if (!array_key_exists('locations', $this->response)) {
-            $this->response['locations'] = $this->httpClient->request('GET', 'get-objects/locations')->getBody();
+            $this->response['locations'] = $this->httpClient->request('GET', 'objects/locations')->getBody();
         }
 
         return (string) $this->response['locations'];
@@ -81,7 +81,7 @@ class ApiClient
     public function getRecipes()
     {
         if (!array_key_exists('recipes', $this->response)) {
-            $this->response['recipes'] = $this->httpClient->request('GET', 'get-objects/recipes')->getBody();
+            $this->response['recipes'] = $this->httpClient->request('GET', 'objects/recipes')->getBody();
         }
 
         return (string) $this->response['recipes'];
@@ -90,7 +90,7 @@ class ApiClient
     public function getIngredients()
     {
         if (!array_key_exists('ingredients', $this->response)) {
-            $this->response['ingredients'] = $this->httpClient->request('GET', 'get-objects/recipes_pos')->getBody();
+            $this->response['ingredients'] = $this->httpClient->request('GET', 'objects/recipes_pos')->getBody();
         }
 
         return (string) $this->response['ingredients'];
