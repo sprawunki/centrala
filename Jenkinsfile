@@ -64,11 +64,11 @@ pipeline {
         ]
     }
 
-   unstable {
+    unstable {
       gerritReview \
         labels: [
-          'Code-Review': 0,
-          Verified: -1
+          'Code-Review': -1,
+          Verified: 0
         ]
     }
 
